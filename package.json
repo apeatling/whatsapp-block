@@ -1,0 +1,28 @@
+{
+  "name": "whatsapp-block",
+  "version": "1.0.0",
+  "description": "WhatsApp block for WordPress",
+  "main": "src/index.js",
+  "author": "Andy Peatling",
+  "license": "ISC",
+  "scripts": {
+    "start": "node-sass ./src/editor.scss -o build && node-sass ./src/style.scss -o build && wp-scripts start & node-sass --watch ./src/editor.scss -o build & node-sass --watch ./src/style.scss -o build",
+    "build": "wp-scripts build && node-sass ./src/editor.scss -o build && node-sass ./src/style.scss -o build"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@wordpress/scripts": "^3.4.0",
+    "eslint": "^6.1.0",
+    "eslint-config-wpcalypso": "^4.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-wpcalypso": "^4.1.0",
+    "node-sass": "^4.12.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "typed.js": "^2.0.10"
+  }
+}
