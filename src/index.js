@@ -20,6 +20,7 @@ import { countryCodes } from './countrycodes.js';
 
 registerBlockType( 'apeatling/whatsapp-block', {
 	title: 'WhatsApp',
+	description: 'Allow your visitors to send you a message on WhatsApp with the tap of a button.',
 	icon: WhatsAppIcon,
 	category: 'widgets',
 
@@ -38,31 +39,32 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	},
 
 	edit: ( props ) => {
-		const { attributes: { countryCode, phoneNumber }, setAttributes } = props;
+		const { attributes: { countryCode, phoneNumber }, setAttributes, className } = props;
 
 		return (
-			<Placeholder
-				icon={ WhatsAppIcon }
-				label="WhatsApp"
-				instructions="Enter the phone number for your WhatsApp account."
-			>
-				<form>
-					<SelectControl
-						value={ countryCode }
-						onChange={ ( value ) => setAttributes( { countryCode: value } ) }
-						options={ countryCodes }
-					/>
-					<TextControl
-						placeholder={ __( 'Your phone number…' ) }
-						onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
-						value={ phoneNumber }
-						className={ 'components-placeholder__input' }
-					/>
-					<Button isLarge type="submit">
-						{ __( 'Insert' ) }
-					</Button>
-				</form>
-			</Placeholder>
+			<div className={ className }>
+				<Placeholder
+					icon={ WhatsAppIcon }
+					label="WhatsApp"
+					instructions="Enter the phone number for your WhatsApp account."
+				>
+					<form>
+						<SelectControl
+							value={ countryCode }
+							onChange={ ( value ) => setAttributes( { countryCode: value } ) }
+							options={ countryCodes }
+						/>
+						<TextControl
+							placeholder={ __( 'Your phone number…' ) }
+							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
+							value={ phoneNumber }
+						/>
+						<Button isLarge type="submit">
+							{ __( 'Insert' ) }
+						</Button>
+					</form>
+				</Placeholder>
+			</div>
 		);
 	},
 
