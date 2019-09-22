@@ -4,28 +4,24 @@
 
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
-import {
-	Button,
-	Placeholder,
-	TextControl,
-	SelectControl,
-} from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
 
+import { WhatsAppBlockEdit } from './edit.js';
 import { WhatsAppIcon } from './icon.js';
-import { countryCodes } from './countrycodes.js';
 
 registerBlockType( 'apeatling/whatsapp-block', {
 	title: 'WhatsApp',
 	description: 'Allow your visitors to send you a message on WhatsApp with the tap of a button.',
 	icon: WhatsAppIcon,
 	category: 'widgets',
+	keywords: [ __( 'whatsapp' ), __( 'messenger' ), __( 'contact' ), __( 'support' ) ],
 
 	supports: {
 		align: [ 'left', 'center', 'right' ],
+		html: false,
 	},
 
 	styles: [
@@ -34,39 +30,15 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	],
 
 	attributes: {
-		countryCode: 'string',
-		phoneNumber: 'string',
+		countryCode: {
+			type: 'string',
+		},
+		phoneNumber: {
+			type: 'string',
+		},
 	},
 
-	edit: ( props ) => {
-		const { attributes: { countryCode, phoneNumber }, setAttributes, className } = props;
-
-		return (
-			<div className={ className }>
-				<Placeholder
-					icon={ WhatsAppIcon }
-					label="WhatsApp"
-					instructions="Enter the phone number for your WhatsApp account."
-				>
-					<form>
-						<SelectControl
-							value={ countryCode }
-							onChange={ ( value ) => setAttributes( { countryCode: value } ) }
-							options={ countryCodes }
-						/>
-						<TextControl
-							placeholder={ __( 'Your phone number…' ) }
-							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
-							value={ phoneNumber }
-						/>
-						<Button isLarge type="submit">
-							{ __( 'Insert' ) }
-						</Button>
-					</form>
-				</Placeholder>
-			</div>
-		);
-	},
+	edit: WhatsAppBlockEdit,
 
 	save: () => {
 		return (
