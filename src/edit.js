@@ -9,7 +9,12 @@ import {
 	Placeholder,
 	TextControl,
 	SelectControl,
+	Toolbar,
 } from '@wordpress/components';
+import {
+	BlockControls,
+	RichText,
+} from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -43,9 +48,10 @@ export class WhatsAppBlockEdit extends Component {
 		const {
 			countryCode,
 			phoneNumber,
+			buttonText,
 		} = this.props.attributes;
 
-		const { setAttributes } = this.props;
+		const { setAttributes, className } = this.props;
 
 		if ( this.state.editing ) {
 			return (
@@ -53,6 +59,7 @@ export class WhatsAppBlockEdit extends Component {
 					icon={ WhatsAppIcon }
 					label="WhatsApp"
 					instructions="Enter the phone number for your WhatsApp account."
+					className={ className }
 				>
 					<form onSubmit={ this.onSubmitURL }>
 						<SelectControl
@@ -73,8 +80,29 @@ export class WhatsAppBlockEdit extends Component {
 			);
 		}
 
+		const toolbarControls = [
+			{
+				icon: 'edit',
+				title: __( 'Edit RSS URL' ),
+				onClick: () => this.setState( { editing: true } ),
+			},
+		];
+
 		return (
-			<p>{ countryCode }{ phoneNumber }</p>
+			<div className={ className }>
+				<BlockControls>
+					<Toolbar controls={ toolbarControls } />
+				</BlockControls>
+
+				<RichText
+					placeholder={ __( 'Get in touch with WhatsApp' ) }
+					value={ buttonText }
+					onChange={ ( value ) => setAttributes( { buttonText: value } ) }
+					withoutInteractiveFormatting
+					allowedFormats={ [] }
+					className="whatsapp-button"
+				/>
+			</div>
 		);
 	}
 }

@@ -36,6 +36,9 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		phoneNumber: {
 			type: 'string',
 		},
+		buttonText: {
+			type: 'string', // TODO: switch to selector
+		},
 	},
 
 	edit: WhatsAppBlockEdit,
