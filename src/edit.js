@@ -95,7 +95,8 @@ export class WhatsAppBlockEdit extends Component {
 				</BlockControls>
 
 				<RichText
-					placeholder={ __( 'Get in touch with WhatsApp' ) }
+					placeholder={ __( 'Chat on WhatsApp' ) }
+					keepPlaceholderOnFocus={ true }
 					value={ buttonText }
 					onChange={ ( value ) => setAttributes( { buttonText: value } ) }
 					withoutInteractiveFormatting
