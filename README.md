@@ -1,2 +1,17 @@
-# whatsapp-block
-WhatsApp block for WordPress
+# WhatsApp Block for WordPress
+
+Allow your visitors to send you a message on WhatsApp with the tap of a button.
+
+![WhatsApp Block](https://cldup.com/K8w_w-kEmK.png "WhatsApp Block")
+
+## Installation
+
+[Download the archive](https://github.com/apeatling/whatsapp-block/archive/master.zip) and unzip it in your `wp-content/plugins` directory. Active the plugin and use it directly in the block editor.
+
+## Development
+
+Run the development build with `npm install && npm run start`
+
+## Production
+
+Run the production build with `npm install && npm run build`
