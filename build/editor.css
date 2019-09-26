@@ -7,3 +7,6 @@
 
 .wp-block-apeatling-whatsapp-block button.components-button.is-large {
   margin-left: 7px; }
+
+.wp-block-apeatling-whatsapp-block .components-placeholder__label svg {
+  margin-right: 6px; }
