@@ -85,11 +85,9 @@ export class WhatsAppBlockEdit extends Component {
 							value={ countryCode }
 							onChange={ ( value ) => setAttributes( { countryCode: value } ) }
 							options={ countryCodes }
-							ref={ this.countryCodeRef }
 						/>
 						<TextControl
 							placeholder={ __( 'Your phone number…' ) }
-							onLoad={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							value={ phoneNumber }
 						/>
