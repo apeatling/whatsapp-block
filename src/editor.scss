@@ -16,3 +16,23 @@
 		margin-right: 6px;
 	}
 }
+
+.whatsapp-phonenumber-invalid {
+	.components-popover__content {
+		background: #B40000;
+		color: white;
+		padding: 6px 10px;
+		border-radius: 6px;
+		border: none;
+	}
+
+	&:not(.is-without-arrow):not(.is-mobile):after {
+		border-color: #B40000;
+	}
+
+	svg.dashicon {
+		vertical-align: top;
+		margin-right: 4px;
+		margin-top: -1px;
+	}
+}

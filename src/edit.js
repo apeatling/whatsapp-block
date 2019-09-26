@@ -2,17 +2,16 @@
  * External dependencies
  */
 
+import { Component } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import {
-	Component,
-	createRef,
-} from '@wordpress/element';
 import {
 	Button,
 	Placeholder,
 	TextControl,
 	SelectControl,
 	Toolbar,
+	Popover,
+	Icon,
 } from '@wordpress/components';
 import {
 	BlockControls,
@@ -34,6 +33,7 @@ export class WhatsAppBlockEdit extends Component {
 
 		this.state = {
 			editing: ! ( this.props.attributes.phoneNumber && this.props.attributes.countryCode ),
+			invalidPhoneNumber: false,
 		};
 
 		this.onSubmitURL = this.onSubmitURL.bind( this );
@@ -52,14 +52,21 @@ export class WhatsAppBlockEdit extends Component {
 		e.preventDefault();
 
 		if ( this.isValidPhoneNumber() ) {
-			this.setState( { editing: false } );
+			this.setState( {
+				editing: false,
+				invalidPhoneNumber: false,
+			} );
+		} else {
+			this.setState( {
+				invalidPhoneNumber: true,
+			} );
 		}
 	}
 
 	isValidPhoneNumber() {
 		const { countryCode, phoneNumber } = this.props.attributes;
+		const phoneNumberRegEx = RegExp( /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g' );
 
-		var phoneNumberRegEx = RegExp( /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g' );
 		return phoneNumberRegEx.test( countryCode + phoneNumber );
 	}
 
@@ -77,7 +84,7 @@ export class WhatsAppBlockEdit extends Component {
 				<Placeholder
 					icon={ WhatsAppIcon }
 					label="WhatsApp"
-					instructions="Enter the phone number for your WhatsApp account."
+					instructions="Enter the phone number for your WhatsApp account:"
 					className={ className }
 				>
 					<form onSubmit={ this.onSubmitURL }>
@@ -91,6 +98,16 @@ export class WhatsAppBlockEdit extends Component {
 							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							value={ phoneNumber }
 						/>
+						{ this.state.invalidPhoneNumber && (
+							<Popover
+								position="top center"
+								className="whatsapp-phonenumber-invalid"
+							>
+								<Icon icon="info" />
+								{ __( 'Please enter a valid phone number' ) }
+							</Popover>
+
+						) }
 						<Button isLarge type="submit">
 							{ __( 'Insert' ) }
 						</Button>
@@ -102,7 +119,7 @@ export class WhatsAppBlockEdit extends Component {
 		const toolbarControls = [
 			{
 				icon: 'edit',
-				title: __( 'Edit RSS URL' ),
+				title: __( 'Edit WhatsApp phone number' ),
 				onClick: () => this.setState( { editing: true } ),
 			},
 		];

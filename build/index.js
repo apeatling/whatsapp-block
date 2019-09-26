@@ -348,7 +348,8 @@ function (_Component) {
     _this.setDefaultCountryCode();
 
     _this.state = {
-      editing: !(_this.props.attributes.phoneNumber && _this.props.attributes.countryCode)
+      editing: !(_this.props.attributes.phoneNumber && _this.props.attributes.countryCode),
+      invalidPhoneNumber: false
     };
     _this.onSubmitURL = _this.onSubmitURL.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this));
     return _this;
@@ -373,7 +374,12 @@ function (_Component) {
 
       if (this.isValidPhoneNumber()) {
         this.setState({
-          editing: false
+          editing: false,
+          invalidPhoneNumber: false
+        });
+      } else {
+        this.setState({
+          invalidPhoneNumber: true
         });
       }
     }
@@ -403,7 +409,7 @@ function (_Component) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Placeholder"], {
           icon: _icon_js__WEBPACK_IMPORTED_MODULE_11__["WhatsAppIcon"],
           label: "WhatsApp",
-          instructions: "Enter the phone number for your WhatsApp account.",
+          instructions: "Enter the phone number for your WhatsApp account:",
           className: className
         }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("form", {
           onSubmit: this.onSubmitURL
@@ -414,22 +420,21 @@ function (_Component) {
               countryCode: value
             });
           },
-          options: _countrycodes_js__WEBPACK_IMPORTED_MODULE_10__["countryCodes"],
-          ref: this.countryCodeRef
+          options: _countrycodes_js__WEBPACK_IMPORTED_MODULE_10__["countryCodes"]
         }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
           placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Your phone number…'),
-          onLoad: function onLoad(value) {
-            return setAttributes({
-              phoneNumber: value
-            });
-          },
           onChange: function onChange(value) {
             return setAttributes({
               phoneNumber: value
             });
           },
           value: phoneNumber
-        }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Button"], {
+        }), this.state.invalidPhoneNumber && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Popover"], {
+          position: "top center",
+          className: "whatsapp-phonenumber-invalid"
+        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Icon"], {
+          icon: "info"
+        }), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Please enter a valid phone number')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Button"], {
           isLarge: true,
           type: "submit"
         }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Insert'))));
@@ -437,7 +442,7 @@ function (_Component) {
 
       var toolbarControls = [{
         icon: 'edit',
-        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Edit RSS URL'),
+        title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Edit WhatsApp phone number'),
         onClick: function onClick() {
           return _this2.setState({
             editing: true
