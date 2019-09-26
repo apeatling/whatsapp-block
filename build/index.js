@@ -344,6 +344,9 @@ function (_Component) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WhatsAppBlockEdit);
 
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(WhatsAppBlockEdit).apply(this, arguments));
+
+    _this.setDefaultCountryCode();
+
     _this.state = {
       editing: !(_this.props.attributes.phoneNumber && _this.props.attributes.countryCode)
     };
@@ -352,18 +355,36 @@ function (_Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(WhatsAppBlockEdit, [{
+    key: "setDefaultCountryCode",
+    value: function setDefaultCountryCode() {
+      var countryCode = this.props.attributes.countryCode;
+      var setAttributes = this.props.setAttributes;
+
+      if (undefined === countryCode) {
+        setAttributes({
+          countryCode: '1'
+        });
+      }
+    }
+  }, {
     key: "onSubmitURL",
     value: function onSubmitURL(e) {
       e.preventDefault();
-      var _this$props$attribute = this.props.attributes,
-          countryCode = _this$props$attribute.countryCode,
-          phoneNumber = _this$props$attribute.phoneNumber;
 
-      if (countryCode && phoneNumber) {
+      if (this.isValidPhoneNumber()) {
         this.setState({
           editing: false
         });
       }
+    }
+  }, {
+    key: "isValidPhoneNumber",
+    value: function isValidPhoneNumber() {
+      var _this$props$attribute = this.props.attributes,
+          countryCode = _this$props$attribute.countryCode,
+          phoneNumber = _this$props$attribute.phoneNumber;
+      var phoneNumberRegEx = RegExp(/^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g');
+      return phoneNumberRegEx.test(countryCode + phoneNumber);
     }
   }, {
     key: "render",
@@ -393,9 +414,15 @@ function (_Component) {
               countryCode: value
             });
           },
-          options: _countrycodes_js__WEBPACK_IMPORTED_MODULE_10__["countryCodes"]
+          options: _countrycodes_js__WEBPACK_IMPORTED_MODULE_10__["countryCodes"],
+          ref: this.countryCodeRef
         }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
           placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Your phone number…'),
+          onLoad: function onLoad(value) {
+            return setAttributes({
+              phoneNumber: value
+            });
+          },
           onChange: function onChange(value) {
             return setAttributes({
               phoneNumber: value

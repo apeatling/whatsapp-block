@@ -2,8 +2,11 @@
  * External dependencies
  */
 
-import { Component } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import {
+	Component,
+	createRef,
+} from '@wordpress/element';
 import {
 	Button,
 	Placeholder,
@@ -27,6 +30,8 @@ export class WhatsAppBlockEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
+		this.setDefaultCountryCode();
+
 		this.state = {
 			editing: ! ( this.props.attributes.phoneNumber && this.props.attributes.countryCode ),
 		};
@@ -34,14 +39,28 @@ export class WhatsAppBlockEdit extends Component {
 		this.onSubmitURL = this.onSubmitURL.bind( this );
 	}
 
+	setDefaultCountryCode() {
+		const { countryCode } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		if ( undefined === countryCode ) {
+			setAttributes( { countryCode: '1' } );
+		}
+	}
+
 	onSubmitURL( e ) {
 		e.preventDefault();
 
-		const { countryCode, phoneNumber } = this.props.attributes;
-
-		if ( countryCode && phoneNumber ) {
+		if ( this.isValidPhoneNumber() ) {
 			this.setState( { editing: false } );
 		}
+	}
+
+	isValidPhoneNumber() {
+		const { countryCode, phoneNumber } = this.props.attributes;
+
+		var phoneNumberRegEx = RegExp( /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g' );
+		return phoneNumberRegEx.test( countryCode + phoneNumber );
 	}
 
 	render() {
@@ -66,9 +85,11 @@ export class WhatsAppBlockEdit extends Component {
 							value={ countryCode }
 							onChange={ ( value ) => setAttributes( { countryCode: value } ) }
 							options={ countryCodes }
+							ref={ this.countryCodeRef }
 						/>
 						<TextControl
 							placeholder={ __( 'Your phone number…' ) }
+							onLoad={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							value={ phoneNumber }
 						/>
