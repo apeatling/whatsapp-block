@@ -390,6 +390,11 @@ function (_Component) {
           countryCode = _this$props$attribute.countryCode,
           phoneNumber = _this$props$attribute.phoneNumber;
       var phoneNumberRegEx = RegExp(/^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g');
+
+      if (phoneNumber.length < 1) {
+        return false;
+      }
+
       return phoneNumberRegEx.test(countryCode + phoneNumber);
     }
   }, {
@@ -404,6 +409,12 @@ function (_Component) {
       var _this$props = this.props,
           setAttributes = _this$props.setAttributes,
           className = _this$props.className;
+
+      var onFocusPhoneNumber = function onFocusPhoneNumber() {
+        _this2.setState({
+          invalidPhoneNumber: false
+        });
+      };
 
       if (this.state.editing) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Placeholder"], {
@@ -428,6 +439,7 @@ function (_Component) {
               phoneNumber: value
             });
           },
+          onFocus: onFocusPhoneNumber,
           value: phoneNumber
         }), this.state.invalidPhoneNumber && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Popover"], {
           position: "top center",

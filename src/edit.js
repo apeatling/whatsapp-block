@@ -67,6 +67,10 @@ export class WhatsAppBlockEdit extends Component {
 		const { countryCode, phoneNumber } = this.props.attributes;
 		const phoneNumberRegEx = RegExp( /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g' );
 
+		if ( phoneNumber.length < 1 ) {
+			return false;
+		}
+
 		return phoneNumberRegEx.test( countryCode + phoneNumber );
 	}
 
@@ -78,6 +82,10 @@ export class WhatsAppBlockEdit extends Component {
 		} = this.props.attributes;
 
 		const { setAttributes, className } = this.props;
+
+		const onFocusPhoneNumber = () => {
+			this.setState( { invalidPhoneNumber: false } );
+		};
 
 		if ( this.state.editing ) {
 			return (
@@ -96,6 +104,7 @@ export class WhatsAppBlockEdit extends Component {
 						<TextControl
 							placeholder={ __( 'Your phone number…' ) }
 							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
+							onFocus={ onFocusPhoneNumber }
 							value={ phoneNumber }
 						/>
 						{ this.state.invalidPhoneNumber && (
