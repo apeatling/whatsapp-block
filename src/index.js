@@ -44,6 +44,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	edit: WhatsAppBlockEdit,
 
 	save: () => {
+		// whatsapp://send?phone=&text=&source=&data=
 		return (
 			<p>placeholder</p>
 		);

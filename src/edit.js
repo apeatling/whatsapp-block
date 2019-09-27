@@ -31,20 +31,43 @@ export class WhatsAppBlockEdit extends Component {
 
 		this.setDefaultCountryCode();
 
+		const isValidPhoneNumber = this.isValidPhoneNumber();
 		this.state = {
-			editing: ! ( this.props.attributes.phoneNumber && this.props.attributes.countryCode ),
-			invalidPhoneNumber: false,
+			editing: ! isValidPhoneNumber,
+			isValidPhoneNumber: isValidPhoneNumber,
 		};
 
 		this.onSubmitURL = this.onSubmitURL.bind( this );
 	}
 
-	setDefaultCountryCode() {
+	async setDefaultCountryCode() {
 		const { countryCode } = this.props.attributes;
 		const { setAttributes } = this.props;
 
 		if ( undefined === countryCode ) {
 			setAttributes( { countryCode: '1' } );
+
+			const geoFetch = await fetch( 'http://ip-api.com/json/?fields=countryCode' )
+				.then( response => {
+					if ( ! response.ok ) {
+						return false;
+					}
+
+					return response;
+				} )
+				.catch( () => {
+					return false;
+				} );
+
+			if ( geoFetch ) {
+				const geo = await geoFetch.json();
+
+				countryCodes.forEach( ( item ) => {
+					if ( item.code === geo.countryCode ) {
+						setAttributes( { countryCode: item.value } );
+					}
+				} );
+			}
 		}
 	}
 
@@ -54,11 +77,11 @@ export class WhatsAppBlockEdit extends Component {
 		if ( this.isValidPhoneNumber() ) {
 			this.setState( {
 				editing: false,
-				invalidPhoneNumber: false,
+				isValidPhoneNumber: true,
 			} );
 		} else {
 			this.setState( {
-				invalidPhoneNumber: true,
+				isValidPhoneNumber: false,
 			} );
 		}
 	}
@@ -67,11 +90,11 @@ export class WhatsAppBlockEdit extends Component {
 		const { countryCode, phoneNumber } = this.props.attributes;
 		const phoneNumberRegEx = RegExp( /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, 'g' );
 
-		if ( phoneNumber.length < 1 ) {
+		if ( undefined === phoneNumber || phoneNumber.length < 1 ) {
 			return false;
 		}
 
-		return phoneNumberRegEx.test( countryCode + phoneNumber );
+		return phoneNumberRegEx.test( countryCode.replace( /\D/g, '' ) + phoneNumber );
 	}
 
 	render() {
@@ -84,7 +107,7 @@ export class WhatsAppBlockEdit extends Component {
 		const { setAttributes, className } = this.props;
 
 		const onFocusPhoneNumber = () => {
-			this.setState( { invalidPhoneNumber: false } );
+			this.setState( { isValidPhoneNumber: true } );
 		};
 
 		if ( this.state.editing ) {
@@ -107,7 +130,7 @@ export class WhatsAppBlockEdit extends Component {
 							onFocus={ onFocusPhoneNumber }
 							value={ phoneNumber }
 						/>
-						{ this.state.invalidPhoneNumber && (
+						{ ! this.state.isValidPhoneNumber && (
 							<Popover
 								position="top center"
 								className="whatsapp-phonenumber-invalid"
