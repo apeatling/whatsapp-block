@@ -2,7 +2,7 @@
 
 Allow your visitors to send you a message on WhatsApp with the tap of a button.
 
-![WhatsApp Block](https://cldup.com/K8w_w-kEmK.png "WhatsApp Block")
+![WhatsApp Block](https://cldup.com/eC1WVM-ToJ.gif "WhatsApp Block")
 
 ## Installation
 
