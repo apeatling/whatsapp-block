@@ -1583,13 +1583,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit.js */ "./src/edit.js");
-/* harmony import */ var _icon_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icon.js */ "./src/icon.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit.js */ "./src/edit.js");
+/* harmony import */ var _icon_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./icon.js */ "./src/icon.js");
 
 
 /**
  * External dependencies
  */
+
 
 
 /**
@@ -1601,7 +1604,7 @@ __webpack_require__.r(__webpack_exports__);
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('apeatling/whatsapp-block', {
   title: 'WhatsApp',
   description: 'Allow your visitors to send you a message on WhatsApp with the tap of a button.',
-  icon: _icon_js__WEBPACK_IMPORTED_MODULE_4__["WhatsAppIcon"],
+  icon: _icon_js__WEBPACK_IMPORTED_MODULE_5__["WhatsAppIcon"],
   category: 'widgets',
   keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('whatsapp'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('messenger'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('contact'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('support')],
   supports: {
@@ -1624,14 +1627,21 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('ape
       type: 'string'
     },
     buttonText: {
-      type: 'string' // TODO: switch to selector
-
+      type: 'array',
+      source: 'children',
+      selector: 'div.whatsapp-button'
     }
   },
-  edit: _edit_js__WEBPACK_IMPORTED_MODULE_3__["WhatsAppBlockEdit"],
-  save: function save() {
+  edit: _edit_js__WEBPACK_IMPORTED_MODULE_4__["WhatsAppBlockEdit"],
+  save: function save(props) {
     // whatsapp://send?phone=&text=&source=&data=
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "placeholder");
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: props.className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "whatsapp-button"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      value: props.attributes.buttonText
+    })));
   }
 });
 

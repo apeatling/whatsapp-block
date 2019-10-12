@@ -4,6 +4,9 @@
 
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import {
+	RichText,
+} from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -37,17 +40,22 @@ registerBlockType( 'apeatling/whatsapp-block', {
 			type: 'string',
 		},
 		buttonText: {
-			type: 'string', // TODO: switch to selector
+			type: 'array',
+			source: 'children',
+			selector: 'div.whatsapp-button',
 		},
 	},
 
 	edit: WhatsAppBlockEdit,
 
-	save: () => {
+	save: ( props ) => {
 		// whatsapp://send?phone=&text=&source=&data=
 		return (
-			<p>placeholder</p>
+			<div className={ props.className }>
+				<div className="whatsapp-button">
+					<RichText.Content value={ props.attributes.buttonText } />
+				</div>
+			</div>
 		);
 	},
-
 } );
