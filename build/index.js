@@ -1527,7 +1527,8 @@ function (_Component) {
         },
         withoutInteractiveFormatting: true,
         allowedFormats: [],
-        className: "whatsapp-button"
+        className: "whatsapp-button",
+        tagName: "a"
       }));
     }
   }]);
@@ -1629,18 +1630,24 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('ape
     buttonText: {
       type: 'array',
       source: 'children',
-      selector: 'div.whatsapp-button'
+      selector: 'a.whatsapp-button'
     }
   },
   edit: _edit_js__WEBPACK_IMPORTED_MODULE_4__["WhatsAppBlockEdit"],
   save: function save(props) {
-    // whatsapp://send?phone=&text=&source=&data=
+    var _props$attributes = props.attributes,
+        countryCode = _props$attributes.countryCode,
+        phoneNumber = _props$attributes.phoneNumber,
+        buttonText = _props$attributes.buttonText;
+    var fullPhoneNumber = countryCode.replace(/\D/g, '') + phoneNumber;
+    var whatsAppUrl = 'https://api.whatsapp.com/send?phone=' + fullPhoneNumber + '&text=&source=&data=';
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
       className: props.className
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-      className: "whatsapp-button"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      className: "whatsapp-button",
+      href: whatsAppUrl
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
-      value: props.attributes.buttonText
+      value: buttonText
     })));
   }
 });

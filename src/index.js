@@ -42,19 +42,22 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		buttonText: {
 			type: 'array',
 			source: 'children',
-			selector: 'div.whatsapp-button',
+			selector: 'a.whatsapp-button',
 		},
 	},
 
 	edit: WhatsAppBlockEdit,
 
 	save: ( props ) => {
-		// whatsapp://send?phone=&text=&source=&data=
+		const { countryCode, phoneNumber, buttonText } = props.attributes;
+		const fullPhoneNumber = countryCode.replace( /\D/g, '' ) + phoneNumber;
+		const whatsAppUrl = 'https://api.whatsapp.com/send?phone=' + fullPhoneNumber + '&text=&source=&data=';
+
 		return (
 			<div className={ props.className }>
-				<div className="whatsapp-button">
-					<RichText.Content value={ props.attributes.buttonText } />
-				</div>
+				<a className="whatsapp-button" href={ whatsAppUrl }>
+					<RichText.Content value={ buttonText } />
+				</a>
 			</div>
 		);
 	},
