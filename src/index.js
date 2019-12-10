@@ -28,7 +28,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	},
 
 	styles: [
-		{ name: 'default', label: __( 'Default' ), isDefault: true },
+		{ name: 'dark', label: __( 'Dark' ), isDefault: true },
 		{ name: 'light', label: __( 'Light' ) },
 	],
 
@@ -63,7 +63,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 
 		return (
 			<div className={ props.className }>
-				<a className="whatsapp-button" href={ whatsAppUrl }>
+				<a className="whatsapp-block__button" href={ whatsAppUrl }>
 					{ getButtonText() }
 				</a>
 			</div>

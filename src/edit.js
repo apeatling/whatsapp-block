@@ -169,7 +169,7 @@ export class WhatsAppBlockEdit extends Component {
 					onChange={ ( value ) => setAttributes( { buttonText: value } ) }
 					withoutInteractiveFormatting
 					allowedFormats={ [] }
-					className="whatsapp-button"
+					className="whatsapp-block__button"
 					tagName="a"
 				/>
 			</div>
