@@ -1640,15 +1640,24 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('ape
         phoneNumber = _props$attributes.phoneNumber,
         buttonText = _props$attributes.buttonText;
     var fullPhoneNumber = countryCode.replace(/\D/g, '') + phoneNumber;
-    var whatsAppUrl = 'https://api.whatsapp.com/send?phone=' + fullPhoneNumber + '&text=&source=&data=';
+    var whatsAppUrl = 'https://wa.me/' + fullPhoneNumber + '&text=';
+
+    var getButtonText = function getButtonText() {
+      if (!buttonText.length) {
+        return Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Chat on WhatsApp');
+      }
+
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+        value: buttonText
+      });
+    };
+
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
       className: props.className
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
       className: "whatsapp-button",
       href: whatsAppUrl
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
-      value: buttonText
-    })));
+    }, getButtonText()));
   }
 });
 

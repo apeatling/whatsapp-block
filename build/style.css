@@ -24,5 +24,11 @@ div.wp-block-apeatling-whatsapp-block.is-style-light a.whatsapp-button {
   background-repeat: no-repeat;
   background-size: 32px 32px; }
 
+div.wp-block-apeatling-whatsapp-block.aligncenter {
+  text-align: center; }
+
+div.wp-block-apeatling-whatsapp-block.alignright {
+  text-align: right; }
+
 div.wp-block-apeatling-whatsapp-block:hover {
   opacity: 0.9; }

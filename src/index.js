@@ -51,12 +51,20 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	save: ( props ) => {
 		const { countryCode, phoneNumber, buttonText } = props.attributes;
 		const fullPhoneNumber = countryCode.replace( /\D/g, '' ) + phoneNumber;
-		const whatsAppUrl = 'https://api.whatsapp.com/send?phone=' + fullPhoneNumber + '&text=&source=&data=';
+		const whatsAppUrl = 'https://wa.me/' + fullPhoneNumber + '&text=';
+
+		const getButtonText = () => {
+			if ( ! buttonText.length ) {
+				return __( 'Chat on WhatsApp' );
+			}
+
+			return <RichText.Content value={ buttonText } />;
+		};
 
 		return (
 			<div className={ props.className }>
 				<a className="whatsapp-button" href={ whatsAppUrl }>
-					<RichText.Content value={ buttonText } />
+					{ getButtonText() }
 				</a>
 			</div>
 		);

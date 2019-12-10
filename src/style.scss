@@ -38,6 +38,14 @@ div.wp-block-apeatling-whatsapp-block {
 		}
 	}
 
+	&.aligncenter {
+		text-align: center;
+	}
+
+	&.alignright {
+		text-align: right;
+	}
+
 	&:hover {
 		opacity: 0.9;
 	}
