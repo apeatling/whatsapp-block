@@ -50,7 +50,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 
 	save: ( props ) => {
 		const { countryCode, phoneNumber, buttonText } = props.attributes;
-		const fullPhoneNumber = countryCode.replace( /\D/g, '' ) + phoneNumber;
+		const fullPhoneNumber = countryCode.replace( /\D+/g, '' ) + phoneNumber.replace( /\D+/g, '' );
 		const whatsAppUrl = 'https://wa.me/' + fullPhoneNumber + '&text=';
 
 		const getButtonText = () => {
