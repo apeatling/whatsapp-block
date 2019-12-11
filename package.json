@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@wordpress/scripts": "^3.4.0",
+    "@wordpress/scripts": "^6.0.0",
     "eslint": "^6.1.0",
     "eslint-config-wpcalypso": "^4.0.1",
     "eslint-plugin-import": "^2.18.2",
