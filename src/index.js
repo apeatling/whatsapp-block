@@ -28,7 +28,8 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	},
 
 	styles: [
-		{ name: 'dark', label: __( 'Dark' ), isDefault: true },
+		{ name: 'green', label: __( 'Green' ), isDefault: true },
+		{ name: 'dark', label: __( 'Dark' ) },
 		{ name: 'light', label: __( 'Light' ) },
 	],
 
