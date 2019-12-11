@@ -3,7 +3,10 @@
  */
 
 import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
+import {
+	__,
+	_x,
+} from '@wordpress/i18n';
 import {
 	RichText,
 } from '@wordpress/block-editor';
@@ -16,11 +19,16 @@ import { WhatsAppIcon } from './icon.js';
 import { constants } from './constants.js';
 
 registerBlockType( 'apeatling/whatsapp-block', {
-	title: 'WhatsApp',
-	description: 'Allow your visitors to send you a message on WhatsApp with the tap of a button.',
+	title: _x( 'WhatsApp', 'block title', 'whatsapp-block' ),
+	description: __( 'Allow your visitors to send you a message on WhatsApp with the tap of a button.', 'whatsapp-block' ),
 	icon: WhatsAppIcon,
 	category: 'widgets',
-	keywords: [ __( 'whatsapp' ), __( 'messenger' ), __( 'contact' ), __( 'support' ) ],
+	keywords: [
+		_x( 'whatsapp', 'keyword', 'whatsapp-block' ),
+		_x( 'messenger', 'keyword', 'whatsapp-block' ),
+		_x( 'contact', 'keyword', 'whatsapp-block' ),
+		_x( 'support', 'keyword', 'whatsapp-block' ),
+	],
 
 	supports: {
 		align: [ 'left', 'center', 'right' ],
@@ -28,9 +36,9 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	},
 
 	styles: [
-		{ name: 'green', label: __( 'Green' ), isDefault: true },
-		{ name: 'dark', label: __( 'Dark' ) },
-		{ name: 'light', label: __( 'Light' ) },
+		{ name: 'green', label: _x( 'Default', 'block style', 'whatsapp-block' ), isDefault: true },
+		{ name: 'dark', label: _x( 'Dark', 'block style', 'whatsapp-block' ) },
+		{ name: 'light', label: _x( 'Light', 'block style', 'whatsapp-block' ) },
 	],
 
 	attributes: {

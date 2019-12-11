@@ -2,9 +2,10 @@
 
 /**
  * Plugin Name: WhatsApp Block
- * Description: WhatsApp block for WordPress
+ * Description: Allow your visitors to send you a message on WhatsApp with the tap of a button.
  * Version: 1.0.0
  * Author: Andy Peatling
+ * Text Domain: whatsapp-block
  */
 
 add_action( 'init', function() {
@@ -37,6 +38,9 @@ add_action( 'init', function() {
 		[],
 		filemtime( plugin_dir_path( __FILE__ ) . 'build/editor.css' )
 	);
+
+	// i18n
+	wp_set_script_translations( 'whatsapp-block-script', 'whatsapp-block' );
 
 	register_block_type( 'apeatling/whatsapp-block', [
 		'editor_script' => 'whatsapp-block-script',

@@ -3,7 +3,10 @@
  */
 
 import { Component } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import {
+	__,
+	_x,
+} from '@wordpress/i18n';
 import {
 	Button,
 	Placeholder,
@@ -131,7 +134,7 @@ export class WhatsAppBlockEdit extends Component {
 							options={ countryCodes }
 						/>
 						<TextControl
-							placeholder={ __( 'Your phone number…' ) }
+							placeholder={ __( 'Your phone number…', 'whatsapp-block' ) }
 							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							onFocus={ onFocusPhoneNumber }
 							value={ phoneNumber }
@@ -142,12 +145,12 @@ export class WhatsAppBlockEdit extends Component {
 								className="whatsapp-phonenumber-invalid"
 							>
 								<Icon icon="info" />
-								{ __( 'Please enter a valid phone number' ) }
+								{ __( 'Please enter a valid phone number', 'whatsapp-block' ) }
 							</Popover>
 
 						) }
 						<Button isLarge type="submit">
-							{ __( 'Insert' ) }
+							{ _x( 'Insert', 'block insert button', 'whatsapp-block' ) }
 						</Button>
 					</form>
 				</Placeholder>
@@ -157,7 +160,7 @@ export class WhatsAppBlockEdit extends Component {
 		const toolbarControls = [
 			{
 				icon: 'edit',
-				title: __( 'Edit WhatsApp phone number' ),
+				title: __( 'Edit WhatsApp phone number', 'whatsapp-block' ),
 				onClick: () => this.setState( { editing: true } ),
 			},
 		];
@@ -183,8 +186,8 @@ export class WhatsAppBlockEdit extends Component {
 					>
 						<PanelRow>
 							<TextareaControl
-								label={ __( 'Default First Message' ) }
-								help={ __( 'The default first message that will be sent by visitors when using this button.' ) }
+								label={ __( 'Default First Message', 'whatsapp-block' ) }
+								help={ __( 'The default first message that will be sent by visitors when using this button.', 'whatsapp-block' ) }
 								value={ getFirstMessage() }
 								onChange={ ( text ) => setAttributes( { firstMessage: text } ) }
 							/>
