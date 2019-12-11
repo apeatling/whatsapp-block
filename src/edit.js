@@ -162,6 +162,14 @@ export class WhatsAppBlockEdit extends Component {
 			},
 		];
 
+		const getFirstMessage = () => {
+			if ( undefined === firstMessage ) {
+				return constants.defaultFirstMessage;
+			}
+
+			return firstMessage;
+		};
+
 		return (
 			<div className={ className }>
 				<BlockControls>
@@ -177,8 +185,7 @@ export class WhatsAppBlockEdit extends Component {
 							<TextareaControl
 								label={ __( 'Default First Message' ) }
 								help={ __( 'The default first message that will be sent by visitors when using this button.' ) }
-								placeholder={ constants.defaultFirstMessage }
-								value={ firstMessage }
+								value={ getFirstMessage() }
 								onChange={ ( text ) => setAttributes( { firstMessage: text } ) }
 							/>
 						</PanelRow>

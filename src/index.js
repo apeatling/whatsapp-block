@@ -55,11 +55,19 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		const { countryCode, phoneNumber, firstMessage, buttonText } = props.attributes;
 		const fullPhoneNumber = countryCode.replace( /\D+/g, '' ) + phoneNumber.replace( /\D+/g, '' );
 
+		const getFirstMessage = () => {
+			if ( undefined === firstMessage ) {
+				return constants.defaultFirstMessage;
+			}
+
+			return firstMessage;
+		};
+
 		const getWhatsAppUrl = () => {
 			let url = constants.whatsAppURL + fullPhoneNumber;
 
-			if ( undefined !== firstMessage ) {
-				url += '&text=' + encodeURIComponent( firstMessage );
+			if ( '' !== firstMessage ) {
+				url += '/?text=' + encodeURIComponent( getFirstMessage() );
 			}
 
 			return url;
