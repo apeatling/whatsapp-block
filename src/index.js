@@ -42,7 +42,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		buttonText: {
 			type: 'array',
 			source: 'children',
-			selector: 'a.whatsapp-button',
+			selector: 'a.whatsapp-block__button',
 		},
 	},
 
