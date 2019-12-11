@@ -7,7 +7,6 @@ import { __ } from '@wordpress/i18n';
 import {
 	RichText,
 } from '@wordpress/block-editor';
-
 /**
  * Internal dependencies
  */
@@ -55,7 +54,16 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	save: ( props ) => {
 		const { countryCode, phoneNumber, firstMessage, buttonText } = props.attributes;
 		const fullPhoneNumber = countryCode.replace( /\D+/g, '' ) + phoneNumber.replace( /\D+/g, '' );
-		const whatsAppUrl = 'https://wa.me/' + fullPhoneNumber + '&text=' + firstMessage;
+
+		const getWhatsAppUrl = () => {
+			let url = constants.whatsAppURL + fullPhoneNumber;
+
+			if ( undefined !== firstMessage ) {
+				url += '&text=' + encodeURIComponent( firstMessage );
+			}
+
+			return url;
+		};
 
 		const getButtonText = () => {
 			if ( ! buttonText.length ) {
@@ -67,7 +75,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 
 		return (
 			<div className={ props.className }>
-				<a className="whatsapp-block__button" href={ whatsAppUrl }>
+				<a className="whatsapp-block__button" href={ getWhatsAppUrl() }>
 					{ getButtonText() }
 				</a>
 			</div>
