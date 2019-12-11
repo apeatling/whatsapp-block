@@ -14,6 +14,7 @@ import {
 
 import { WhatsAppBlockEdit } from './edit.js';
 import { WhatsAppIcon } from './icon.js';
+import { constants } from './constants.js';
 
 registerBlockType( 'apeatling/whatsapp-block', {
 	title: 'WhatsApp',
@@ -39,6 +40,9 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		phoneNumber: {
 			type: 'string',
 		},
+		firstMessage: {
+			type: 'string',
+		},
 		buttonText: {
 			type: 'array',
 			source: 'children',
@@ -49,13 +53,13 @@ registerBlockType( 'apeatling/whatsapp-block', {
 	edit: WhatsAppBlockEdit,
 
 	save: ( props ) => {
-		const { countryCode, phoneNumber, buttonText } = props.attributes;
+		const { countryCode, phoneNumber, firstMessage, buttonText } = props.attributes;
 		const fullPhoneNumber = countryCode.replace( /\D+/g, '' ) + phoneNumber.replace( /\D+/g, '' );
-		const whatsAppUrl = 'https://wa.me/' + fullPhoneNumber + '&text=';
+		const whatsAppUrl = 'https://wa.me/' + fullPhoneNumber + '&text=' + firstMessage;
 
 		const getButtonText = () => {
 			if ( ! buttonText.length ) {
-				return __( 'Chat on WhatsApp' );
+				return constants.defaultButtonText;
 			}
 
 			return <RichText.Content value={ buttonText } />;

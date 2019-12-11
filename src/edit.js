@@ -8,13 +8,17 @@ import {
 	Button,
 	Placeholder,
 	TextControl,
+	TextareaControl,
 	SelectControl,
 	Toolbar,
 	Popover,
 	Icon,
+	PanelBody,
+	PanelRow,
 } from '@wordpress/components';
 import {
 	BlockControls,
+	InspectorControls,
 	RichText,
 } from '@wordpress/block-editor';
 
@@ -24,6 +28,7 @@ import {
 
 import { countryCodes } from './countrycodes.js';
 import { WhatsAppIcon } from './icon.js';
+import { constants } from './constants.js';
 
 export class WhatsAppBlockEdit extends Component {
 	constructor() {
@@ -102,6 +107,7 @@ export class WhatsAppBlockEdit extends Component {
 			countryCode,
 			phoneNumber,
 			buttonText,
+			firstMessage,
 		} = this.props.attributes;
 
 		const { setAttributes, className } = this.props;
@@ -162,8 +168,25 @@ export class WhatsAppBlockEdit extends Component {
 					<Toolbar controls={ toolbarControls } />
 				</BlockControls>
 
+				<InspectorControls>
+					<PanelBody
+						title="Message Settings"
+						initialOpen={ true }
+					>
+						<PanelRow>
+							<TextareaControl
+								label={ __( 'Default First Message' ) }
+								help={ __( 'The default first message that will be sent by visitors when using this button.' ) }
+								placeholder={ constants.defaultFirstMessage }
+								value={ firstMessage }
+								onChange={ ( text ) => setAttributes( { firstMessage: text } ) }
+							/>
+						</PanelRow>
+					</PanelBody>
+				</InspectorControls>
+
 				<RichText
-					placeholder={ __( 'Chat on WhatsApp' ) }
+					placeholder={ constants.defaultButtonText }
 					keepPlaceholderOnFocus={ true }
 					value={ buttonText }
 					onChange={ ( value ) => setAttributes( { buttonText: value } ) }
