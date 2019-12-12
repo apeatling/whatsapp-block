@@ -35,12 +35,6 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		html: false,
 	},
 
-	styles: [
-		{ name: 'green', label: _x( 'Default', 'block style', 'whatsapp-block' ), isDefault: true },
-		{ name: 'dark', label: _x( 'Dark', 'block style', 'whatsapp-block' ) },
-		{ name: 'light', label: _x( 'Light', 'block style', 'whatsapp-block' ) },
-	],
-
 	attributes: {
 		countryCode: {
 			type: 'string',
@@ -56,12 +50,25 @@ registerBlockType( 'apeatling/whatsapp-block', {
 			source: 'children',
 			selector: 'a.whatsapp-block__button',
 		},
+		backgroundColor: {
+			type: 'string',
+		},
+		colorClass: {
+			type: 'string',
+		},
 	},
 
 	edit: WhatsAppBlockEdit,
 
 	save: ( props ) => {
-		const { countryCode, phoneNumber, firstMessage, buttonText } = props.attributes;
+		const {
+			countryCode,
+			phoneNumber,
+			firstMessage,
+			buttonText,
+			backgroundColor,
+			colorClass,
+		} = props.attributes;
 		const fullPhoneNumber = countryCode.replace( /\D+/g, '' ) + phoneNumber.replace( /\D+/g, '' );
 
 		const getFirstMessage = () => {
@@ -91,8 +98,8 @@ registerBlockType( 'apeatling/whatsapp-block', {
 		};
 
 		return (
-			<div className={ props.className }>
-				<a className="whatsapp-block__button" href={ getWhatsAppUrl() }>
+			<div className={ props.className + ' is-color-' + colorClass }>
+				<a className="whatsapp-block__button" href={ getWhatsAppUrl() } style={ { backgroundColor: backgroundColor } }>
 					{ getButtonText() }
 				</a>
 			</div>

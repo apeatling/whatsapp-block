@@ -23,6 +23,8 @@ import {
 	BlockControls,
 	InspectorControls,
 	RichText,
+	PanelColorSettings,
+	ContrastChecker,
 } from '@wordpress/block-editor';
 
 /**
@@ -111,6 +113,8 @@ export class WhatsAppBlockEdit extends Component {
 			phoneNumber,
 			buttonText,
 			firstMessage,
+			colorClass,
+			backgroundColor,
 		} = this.props.attributes;
 
 		const { setAttributes, className } = this.props;
@@ -173,8 +177,18 @@ export class WhatsAppBlockEdit extends Component {
 			return firstMessage;
 		};
 
+		const setBackgroundColor = color => {
+			setAttributes( { backgroundColor: color } );
+
+			if ( color === '#25D366' || color === '#465B64' ) {
+				return setAttributes( { colorClass: 'dark' } );
+			}
+
+			setAttributes( { colorClass: 'light' } );
+		};
+
 		return (
-			<div className={ className }>
+			<div className={ className + ' is-color-' + colorClass }>
 				<BlockControls>
 					<Toolbar controls={ toolbarControls } />
 				</BlockControls>
@@ -193,6 +207,40 @@ export class WhatsAppBlockEdit extends Component {
 							/>
 						</PanelRow>
 					</PanelBody>
+					<PanelColorSettings
+						title={ __( 'Color Settings', 'whatsapp-block' ) }
+						initialOpen={ false }
+						colorSettings={ [
+							{
+								value: backgroundColor,
+								onChange: ( color ) => setBackgroundColor( color ),
+								label: __( 'Background Color', 'whatsapp-block' ),
+								disableCustomColors: true,
+								colors: [ {
+									name: _x( 'WhatsApp Green', 'background color name', 'whatsapp-block' ),
+									slug: 'whatsapp-green',
+									color: '#25D366',
+								},
+								{
+									name: _x( 'WhatsApp Dark', 'background color name', 'whatsapp-block' ),
+									slug: 'whatsapp-dark',
+									color: '#465B64',
+								},
+								{
+									name: _x( 'WhatsApp Light', 'background color name', 'whatsapp-block' ),
+									slug: 'whatsapp-light',
+									color: '#F4F4F4',
+								},
+								{
+									name: _x( 'White', 'background color name', 'whatsapp-block' ),
+									slug: 'whatsapp-white',
+									color: '#FFFFFF',
+								} ],
+							},
+						] }
+					>
+						<ContrastChecker />
+					</PanelColorSettings>
 				</InspectorControls>
 
 				<RichText
@@ -204,6 +252,9 @@ export class WhatsAppBlockEdit extends Component {
 					allowedFormats={ [] }
 					className="whatsapp-block__button"
 					tagName="a"
+					style={ {
+						backgroundColor: backgroundColor,
+					} }
 				/>
 			</div>
 		);
