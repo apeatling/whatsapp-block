@@ -180,7 +180,7 @@ export class WhatsAppBlockEdit extends Component {
 		const setBackgroundColor = color => {
 			setAttributes( { backgroundColor: color } );
 
-			if ( color === '#25D366' || color === '#465B64' ) {
+			if ( color === undefined || color === '#25D366' || color === '#465B64' ) {
 				return setAttributes( { colorClass: 'dark' } );
 			}
 
