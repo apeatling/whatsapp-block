@@ -83,7 +83,7 @@ registerBlockType( 'apeatling/whatsapp-block', {
 			let url = constants.whatsAppURL + fullPhoneNumber;
 
 			if ( '' !== firstMessage ) {
-				url += '/?text=' + encodeURIComponent( getFirstMessage() );
+				url += '&text=' + encodeURIComponent( getFirstMessage() );
 			}
 
 			return url;
