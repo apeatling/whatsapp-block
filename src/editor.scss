@@ -5,7 +5,9 @@
 	}
 
 	select.components-select-control__input {
-		width: 85px;
+		width: 95px;
+		min-height: 30px;
+		padding-left: 10px;
 	}
 
 	button.components-button.is-large {
