@@ -1,10 +1,14 @@
 <?php
 
 /**
- * Plugin Name: WhatsApp Block
- * Description: Allow your visitors to send you a message on WhatsApp with the tap of a button.
+ * Plugin Name: WhatsApp Button Block
+ * Description: Add a WhatsApp chat button to your website and allow your visitors to send you a message with the tap of a button.
  * Version: 1.0.0
  * Author: Andy Peatling
+ * Author URI: https://apeatling.com
+ * Requires at least: 5.0
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: whatsapp-block
  */
 
