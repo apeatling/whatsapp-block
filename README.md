@@ -1,4 +1,4 @@
-# WhatsApp Chat Button for WordPress
+# WhatsApp Message Button for WordPress
 
 Allow your visitors to send you a message on WhatsApp with the tap of a button.
 

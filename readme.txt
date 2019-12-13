@@ -1,4 +1,4 @@
-=== Chat Button for WhatsApp ===
+=== WA Message Button Block ===
 Requires at least: 5.0
 Tested up to: 5.3
 Contributors: apeatling
@@ -7,11 +7,11 @@ Tags: whatsapp, whatsapp chat, whatsapp message, social chat, contact us, chat
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add a WhatsApp chat button to your website and allow your visitors to send you a message with the tap of a button.
+Add a WhatsApp message button to your website and allow your visitors to send you a message with the tap of a button.
 
 == Description ==
 
-Add a WhatsApp chat button to your website and allow your visitors to send you a message with the tap of a button.
+Add a WhatsApp message button to your website and allow your visitors to send you a message with the tap of a button.
 
 === Features ===
 

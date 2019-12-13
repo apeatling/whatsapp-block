@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name: Chat Button for WhatsApp
- * Description: Add a WhatsApp chat button to your website and allow your visitors to send you a message with the tap of a button.
+ * Plugin Name: WA Message Button Block
+ * Description: Add a WhatsApp message button to your website and allow your visitors to send you a message with the tap of a button.
  * Version: 1.0.1
  * Author: Andy Peatling
  * Author URI: https://apeatling.com
