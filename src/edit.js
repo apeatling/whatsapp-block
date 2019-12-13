@@ -127,7 +127,7 @@ export class WhatsAppBlockEdit extends Component {
 			return (
 				<Placeholder
 					icon={ WhatsAppIcon }
-					label="WhatsApp"
+					label={ constants.blockTitle }
 					instructions="Enter the phone number for your WhatsApp account:"
 					className={ className }
 				>

@@ -19,7 +19,7 @@ import { WhatsAppIcon } from './icon.js';
 import { constants } from './constants.js';
 
 registerBlockType( 'apeatling/whatsapp-block', {
-	title: _x( 'WhatsApp', 'block title', 'whatsapp-block' ),
+	title: constants.blockTitle,
 	description: __( 'Allow your visitors to send you a message on WhatsApp with the tap of a button.', 'whatsapp-block' ),
 	icon: WhatsAppIcon,
 	category: 'widgets',

@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-block",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "WhatsApp block for WordPress",
   "main": "src/index.js",
   "author": "Andy Peatling",
