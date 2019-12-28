@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Send a Message
  * Description: Add a WhatsApp message button to your website and allow your visitors to send you a message with the tap of a button.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Andy Peatling
  * Author URI: https://apeatling.com
  * Requires at least: 5.0
