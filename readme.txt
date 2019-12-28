@@ -1,4 +1,4 @@
-=== WA Message Button Block ===
+=== Send a Message ===
 Requires at least: 5.0
 Tested up to: 5.3
 Contributors: apeatling
