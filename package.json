@@ -1,7 +1,7 @@
 {
-  "name": "whatsapp-block",
+  "name": "send-a-message-blocks",
   "version": "1.0.1",
-  "description": "WhatsApp block for WordPress",
+  "description": "Add a message button to your website and allow your visitors to send you a message with the tap of a button",
   "main": "src/index.js",
   "author": "Andy Peatling",
   "license": "ISC",

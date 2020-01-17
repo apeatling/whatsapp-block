@@ -27,5 +27,5 @@ Add a WhatsApp message button to your website and allow your visitors to send yo
 
 == Changelog ==
 
-= 1.0.2 =
+= 1.0.3 =
 * Initial release.

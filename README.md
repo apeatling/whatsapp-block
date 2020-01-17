@@ -1,6 +1,11 @@
-# WhatsApp Message Button for WordPress
+# Send a Message Buttons for WordPress
 
-Allow your visitors to send you a message on WhatsApp with the tap of a button.
+Allow your visitors to send you a message using the following services with the touch of a button:
+
+* WhatsApp
+* That's it! More services coming soon.
+
+Here's an example of inserting a WhatsApp button:
 
 ![WhatsApp Block](https://cldup.com/UBnu7lhJIW.gif "WhatsApp Block")
 

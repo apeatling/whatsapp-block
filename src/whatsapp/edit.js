@@ -2,6 +2,7 @@
  * External dependencies
  */
 
+import classnames from 'classnames';
 import { Component } from '@wordpress/element';
 import {
 	__,
@@ -138,7 +139,7 @@ export class WhatsAppBlockEdit extends Component {
 							options={ countryCodes }
 						/>
 						<TextControl
-							placeholder={ __( 'Your phone number…', 'whatsapp-block' ) }
+							placeholder={ __( 'Your phone number…', 'send-a-message' ) }
 							onChange={ ( value ) => setAttributes( { phoneNumber: value } ) }
 							onFocus={ onFocusPhoneNumber }
 							value={ phoneNumber }
@@ -149,12 +150,12 @@ export class WhatsAppBlockEdit extends Component {
 								className="whatsapp-phonenumber-invalid"
 							>
 								<Icon icon="info" />
-								{ __( 'Please enter a valid phone number', 'whatsapp-block' ) }
+								{ __( 'Please enter a valid phone number', 'send-a-message' ) }
 							</Popover>
 
 						) }
 						<Button isLarge type="submit">
-							{ _x( 'Insert', 'block insert button', 'whatsapp-block' ) }
+							{ _x( 'Insert', 'block insert button', 'send-a-message' ) }
 						</Button>
 					</form>
 				</Placeholder>
@@ -164,7 +165,7 @@ export class WhatsAppBlockEdit extends Component {
 		const toolbarControls = [
 			{
 				icon: 'edit',
-				title: __( 'Edit WhatsApp phone number', 'whatsapp-block' ),
+				title: __( 'Edit WhatsApp phone number', 'send-a-message' ),
 				onClick: () => this.setState( { editing: true } ),
 			},
 		];
@@ -188,7 +189,7 @@ export class WhatsAppBlockEdit extends Component {
 		};
 
 		return (
-			<div className={ className + ' is-color-' + colorClass }>
+			<div className={ classnames( className, `is-color-${ colorClass }` ) }>
 				<BlockControls>
 					<Toolbar controls={ toolbarControls } />
 				</BlockControls>
@@ -200,39 +201,39 @@ export class WhatsAppBlockEdit extends Component {
 					>
 						<PanelRow>
 							<TextareaControl
-								label={ __( 'Default First Message', 'whatsapp-block' ) }
-								help={ __( 'The default first message that will be sent by visitors when using this button.', 'whatsapp-block' ) }
+								label={ __( 'Default First Message', 'send-a-message' ) }
+								help={ __( 'The default first message that will be sent by visitors when using this button.', 'send-a-message' ) }
 								value={ getFirstMessage() }
 								onChange={ ( text ) => setAttributes( { firstMessage: text } ) }
 							/>
 						</PanelRow>
 					</PanelBody>
 					<PanelColorSettings
-						title={ __( 'Color Settings', 'whatsapp-block' ) }
+						title={ __( 'Color Settings', 'send-a-message' ) }
 						initialOpen={ false }
 						colorSettings={ [
 							{
 								value: backgroundColor,
 								onChange: ( color ) => setBackgroundColor( color ),
-								label: __( 'Background Color', 'whatsapp-block' ),
+								label: __( 'Background Color', 'send-a-message' ),
 								disableCustomColors: true,
 								colors: [ {
-									name: _x( 'WhatsApp Green', 'background color name', 'whatsapp-block' ),
+									name: _x( 'WhatsApp Green', 'background color name', 'send-a-message' ),
 									slug: 'whatsapp-green',
 									color: '#25D366',
 								},
 								{
-									name: _x( 'WhatsApp Dark', 'background color name', 'whatsapp-block' ),
+									name: _x( 'WhatsApp Dark', 'background color name', 'send-a-message' ),
 									slug: 'whatsapp-dark',
 									color: '#465B64',
 								},
 								{
-									name: _x( 'WhatsApp Light', 'background color name', 'whatsapp-block' ),
+									name: _x( 'WhatsApp Light', 'background color name', 'send-a-message' ),
 									slug: 'whatsapp-light',
 									color: '#F4F4F4',
 								},
 								{
-									name: _x( 'White', 'background color name', 'whatsapp-block' ),
+									name: _x( 'White', 'background color name', 'send-a-message' ),
 									slug: 'whatsapp-white',
 									color: '#FFFFFF',
 								} ],
